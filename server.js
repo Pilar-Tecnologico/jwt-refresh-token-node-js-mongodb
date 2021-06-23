@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const dbConfig = require("./app/config/db.config");
+const dotenv = require("dotenv").config();
 
 const app = express();
 
@@ -32,7 +33,7 @@ db.mongoose
 
 // simple route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to pilarTecno application." });
+  res.json({ message: "Welcome to pilarTecno application." });c
 });
 
 // routes
