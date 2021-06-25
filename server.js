@@ -1,39 +1,41 @@
 const express = require("express");
 const cors = require("cors");
 const dbConfig = require("./app/config/db.config");
-
 const app = express();
 
 let corsOptions = {
-  origin: "http://localhost:8081"
+  origin: "*"
 };
 
-app.use(cors(corsOptions));
 
+app.use(cors(corsOptions));
 // parse requests of content-type - application/json
 app.use(express.json());
-
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
 const db = require("./app/models");
+const { request } = require("express");
 const Role = db.role;
 
+//CONEXION A LA BD DE ATLAS
 db.mongoose
   .connect(dbConfig.dbUri, dbConfig.mongooseOptions)
   .then(() => {
-    console.log("Successfully connect to MongoDB.");
+    console.log("CONNECT TO MONGODB.");
     initial();
   })
   .catch(err => {
-    console.error("Connection error", err);
+    console.error("CONNECTION ERROR", err);
     process.exit();
   });
 
-// simple route
+ //simple route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to pilarTecno application." });
-});
+  res.json({ message: "BIENVENIDOS A LA TAREA FINAL DEL CURSO." });
+ });
+
+  
 
 // routes
 require("./app/routes/auth.routes")(app);
