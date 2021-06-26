@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const dotenv =  require('dotenv').config();
 const dbConfig = require("./app/config/db.config");
 
 const app = express();
@@ -38,6 +39,10 @@ app.get("/", (req, res) => {
 // routes
 require("./app/routes/auth.routes")(app);
 require("./app/routes/user.routes")(app);
+// lord of the ring route.
+require("./app/routes/lotr.routes")(app);
+// games free to play route.
+require("./app/routes/games.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 3000;
