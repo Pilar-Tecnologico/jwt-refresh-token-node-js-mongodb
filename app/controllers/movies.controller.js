@@ -182,7 +182,7 @@ module.exports = {
     });
   },
   deletebookmarks: async (req, res) => {
-    //this will delete the hole object, including the userId
+    //this will delete the hole object
     const userId = req.userId;
     Bookmark.findOneAndDelete({ userId: userId }).exec((err, resp) => {
       err
