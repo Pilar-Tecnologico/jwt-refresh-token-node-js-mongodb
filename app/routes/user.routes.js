@@ -1,4 +1,5 @@
 const { authJwt } = require("../middlewares");
+const express = require('express');
 const controller = require("../controllers/user.controller");
 
 module.exports = function(app) {
@@ -25,4 +26,26 @@ module.exports = function(app) {
     [authJwt.verifyToken, authJwt.isAdmin],
     controller.adminBoard
   );
+
+  app.get("/api/test/city",
+   // [authJwt.verifyToken, authJwt.isUser],
+    controller.city
+  );
+
+  app.post("/api/test/city",
+    //[authJwt.verifyToken, authJwt.isUser],
+    controller.city
+  );
+
+  app.get("/api/test/current",
+    //[authJwt.verifyToken, authJwt.isUser],
+    controller.current
+  );
+
+  app.post("/api/test/current",
+    //[authJwt.verifyToken, authJwt.isUser],
+    controller.current
+  );
 };
+
+
