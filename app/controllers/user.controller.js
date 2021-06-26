@@ -22,7 +22,7 @@ exports.city=(req, res) => {
 };
 
 exports.saveCity=(req, res) => {
-  current.postCity(req, res);
+  city.postCity(req, res);
 };
 
 exports.current=(req, res) => {
@@ -31,4 +31,5 @@ exports.current=(req, res) => {
 
 exports.saveCurrent=(req, res) => {
   current.postCurrent(req, res);
-}
+};
+

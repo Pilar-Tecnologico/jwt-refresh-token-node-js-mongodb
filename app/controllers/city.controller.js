@@ -17,15 +17,7 @@ async function getCity(req, res){
 };
 
 async function postCity(req, res){
-    const reqBody = req.params.body;
-    const axiosParams = querystring.stringify({reqBody});
-    axios.post(`https://apis.datos.gob.ar/georef/api/provincias?${axiosParams}`)
-    .then((response) =>{
-        res.json(response.data);
-    })
-    .catch(err => {
-        res.status(500).json(err);
-    });
-}
+    res.json(await cityMongoService.saveCity());
+ } 
 
 module.exports = {getCity, postCity};

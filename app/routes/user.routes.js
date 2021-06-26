@@ -34,7 +34,7 @@ module.exports = function(app) {
 
   app.post("/api/test/city",
     //[authJwt.verifyToken, authJwt.isUser],
-    controller.city
+    controller.saveCity
   );
 
   app.get("/api/test/current",
@@ -44,8 +44,10 @@ module.exports = function(app) {
 
   app.post("/api/test/current",
     //[authJwt.verifyToken, authJwt.isUser],
-    controller.current
+    controller.saveCurrent
   );
+
+  
 };
 
 

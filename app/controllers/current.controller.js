@@ -1,11 +1,13 @@
 const axios = require('axios').default;
 const querystring = require('querystring');
+const apiKey = process.env.API_KEY;
 const currentMongoService = require('../services/database/current.mongo.service');
 
+
 async function getCurrent(req, res){
-    const cityName = req.query.q;
-    const axiosParams = querystring.stringify({cityName});
-    axios.get(`https://api.openweathermap.org/data/2.5/weather?${axiosParams}`)
+    const q = req.query.q;
+    const axiosParams = querystring.stringify({appid: apiKey, q})    
+    await axios.get(`https://api.openweathermap.org/data/2.5/weather?${axiosParams}`)
         .then((response) => {
             const resData =  response.data;
             res.status(200).json(resData);
@@ -17,5 +19,10 @@ async function getCurrent(req, res){
             });
         });
 };
+
+async function postCurrent(req, res){
+    res.json(await currentMongoService.saveCurrent());
+};
+
      
-  module.exports = {getCurrent};
+  module.exports = {getCurrent, postCurrent};
