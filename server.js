@@ -2,12 +2,15 @@ const express = require("express");
 const cors = require("cors");
 const dbConfig = require("./app/config/db.config");
 const dotenv = require("dotenv").config();
+const fifaRoute = require('./app/routes/fifa');
+
 
 const app = express();
 
 let corsOptions = {
   origin: "http://localhost:8081"
 };
+
 
 app.use(cors(corsOptions));
 
@@ -21,15 +24,15 @@ const db = require("./app/models");
 const Role = db.role;
 
 db.mongoose
-  .connect(dbConfig.dbUri, dbConfig.mongooseOptions)
-  .then(() => {
-    console.log("Successfully connect to MongoDB.");
-    initial();
-  })
-  .catch(err => {
-    console.error("Connection error", err);
-    process.exit();
-  });
+.connect(dbConfig.dbUri, dbConfig.mongooseOptions)
+.then(() => {
+  console.log("Successfully connect to MongoDB.");
+  initial();
+})
+.catch(err => {
+  console.error("Connection error", err);
+  process.exit();
+});
 
 // simple route
 app.get("/", (req, res) => {
@@ -37,6 +40,7 @@ app.get("/", (req, res) => {
 });
 
 // routes
+app.use('/fifa', fifaRoute);
 require("./app/routes/auth.routes")(app);
 require("./app/routes/user.routes")(app);
 
@@ -78,6 +82,7 @@ function initial() {
 
         console.log("added 'admin' to roles collection");
       });
+      
     }
   });
 }
