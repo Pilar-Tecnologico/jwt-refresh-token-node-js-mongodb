@@ -38,6 +38,11 @@ router.post('/bookmarks', authJwt.verifyToken, postbookmarks);
 
 router.post('/bookmarks/remove', authJwt.verifyToken, removebookmarks);
 
-router.delete('/bookmarks', authJwt.verifyToken, deletebookmarks);
+router.delete(
+  '/bookmarks',
+  authJwt.verifyToken,
+  authJwt.isAdmin,
+  deletebookmarks
+);
 
 module.exports = router;

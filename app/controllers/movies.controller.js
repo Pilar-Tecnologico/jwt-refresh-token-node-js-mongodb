@@ -119,12 +119,11 @@ module.exports = {
   getbookmarks: (req, res) => {
     const userId = req.userId;
     Bookmark.findOne({ userId: userId }).exec((err, _bookmark) => {
-      if (_bookmark === null) {
-        res
-          .status(404)
-          .json({ message: `The user doesn't have bookmarked movies` });
-      }
-      res.json(_bookmark);
+      _bookmark === null
+        ? res
+            .status(404)
+            .json({ message: `The user doesn't have bookmarked movies` })
+        : res.json(_bookmark);
     });
   },
   postbookmarks: async (req, res) => {
@@ -209,21 +208,22 @@ module.exports = {
           message: `The User doesn't have any bookmarked movies`,
           error: err,
         });
-      }
-      //if _bookmark is not null, it means it found the user bookmark list, so we just need to push the new movieId
-      const bookmarksToRemove = req.body.bookmarks;
+      } else {
+        //if _bookmark is not null, it means it found the user bookmark list, so we just need to push the new movieId
+        const bookmarksToRemove = req.body.bookmarks;
 
-      await Bookmark.findByIdAndUpdate(_bookmark._id, {
-        $pull: { bookmarks: { $in: bookmarksToRemove } },
-      })
-        .then((resp) => {
-          res.json({ message: 'Bookmark updated', updatedBookmark: resp });
+        await Bookmark.findByIdAndUpdate(_bookmark._id, {
+          $pull: { bookmarks: { $in: bookmarksToRemove } },
         })
-        .catch((err) =>
-          res
-            .status(409)
-            .json({ message: 'Something went wrong updating the list' })
-        );
+          .then((resp) => {
+            res.json({ message: 'Bookmark updated' });
+          })
+          .catch((err) =>
+            res
+              .status(409)
+              .json({ message: 'Something went wrong updating the list' })
+          );
+      }
     });
   },
 };
