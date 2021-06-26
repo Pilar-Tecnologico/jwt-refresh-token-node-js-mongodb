@@ -11,4 +11,6 @@ db.refreshToken = require("./refreshToken.model");
 
 db.ROLES = ["user", "admin", "moderator"];
 
+db.game = require('./game.model');
+
 module.exports = db;
