@@ -1,0 +1,450 @@
+{
+	"info": {
+		"_postman_id": "04b2852c-3dc9-47ad-9456-287953873623",
+		"name": "PilarTecno - Martin dos Santos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Movies",
+			"item": [
+				{
+					"name": "index",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}",
+							"host": [
+								"{{baseurl}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Popular",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/movies/popular/:page",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"movies",
+								"popular",
+								":page"
+							],
+							"variable": [
+								{
+									"key": "page",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Latest",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/movies/latest",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"movies",
+								"latest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bookmarks",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/movies/bookmarks",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"movies",
+								"bookmarks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bookmarks",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/movies/bookmarks",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"movies",
+								"bookmarks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove bookmarks from list",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"bookmarks\":[578701]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/movies/bookmarks/remove",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"movies",
+								"bookmarks",
+								"remove"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add to Bookmark",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"bookmarks\":[791373]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/movies/bookmarks",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"movies",
+								"bookmarks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Top Rated",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/movies/top_rated",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"movies",
+								"top_rated"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upcoming",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/movies/upcoming",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"movies",
+								"upcoming"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Genres",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/movies/genres?x-access-token={{access_token}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"movies",
+								"genres"
+							],
+							"query": [
+								{
+									"key": "x-access-token",
+									"value": "{{access_token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Movie by Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/movies/details/:movieId",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"movies",
+								"details",
+								":movieId"
+							],
+							"variable": [
+								{
+									"key": "movieId",
+									"value": "615457"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Similar Movies",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/movies/similar/:movieId",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"movies",
+								"similar",
+								":movieId"
+							],
+							"variable": [
+								{
+									"key": "movieId",
+									"value": "615457"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Images",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/movies/images/:movieId",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"movies",
+								"images",
+								":movieId"
+							],
+							"variable": [
+								{
+									"key": "movieId",
+									"value": "635302"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"martin2\",\r\n    \"email\":\"martn@gmail.com\",\r\n    \"password\":\"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/api/auth/signup",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "signin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"martin2\",\r\n    \"password\":\"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/api/auth/signin",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "access_token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZDc1NTVmY2U0MTA5MzQ3ODk2NmJlNSIsImlhdCI6MTYyNDczNTc1OCwiZXhwIjoxNjI0NzM5MzU4fQ.603X8BfJK5mrMJn1nPpQJb1V6_hNWZSva--ran69Npw"
+		}
+	]
+}
