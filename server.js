@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const dbConfig = require("./app/config/db.config");
 const dotenv = require("dotenv").config();
-const fifaRoute = require('./app/routes/fifa');
+const fifaRoute = require('./app/routes/fifa.routes');
 
 
 const app = express();
