@@ -5,8 +5,9 @@
 const axios = require('axios').default;
 const querystring = require('querystring');
 const apiKey = process.env.API_KEY;
-const currentMongoService = require('../services/database/current.mongo.service');
-
+//const currentMongoService = require('../services/database/current.mongo.service');
+const db = require("../models");
+const { current: Current } = db;
 
 async function getCurrent(req, res){
     const q = req.query.q;
@@ -25,7 +26,7 @@ async function getCurrent(req, res){
         });
 };
 
-async function saveCurrent(req, res){
+/* async function saveCurrent(req, res){
     res.json(await currentMongoService.saveCurrent());
 };
 
@@ -45,7 +46,7 @@ async function getForecast(req, res){
                 code: 'bad_request',
                 message: 'Bad request. Please check your parameters values'
             });
-        });
-};
+        }); 
+};*/
      
-  module.exports = {getCurrent, saveCurrent, getForecast};
+  module.exports = {getCurrent};
