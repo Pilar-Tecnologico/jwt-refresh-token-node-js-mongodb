@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const dotenv = require('dotenv').config();
 const dbConfig = require("./app/config/db.config");
 
 const app = express();
@@ -38,6 +39,9 @@ app.get("/", (req, res) => {
 // routes
 require("./app/routes/auth.routes")(app);
 require("./app/routes/user.routes")(app);
+//routes for city and wather(current)
+require("./app/routes/city.routes")(app);
+require("./app/routes/current.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 3000;

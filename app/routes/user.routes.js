@@ -1,5 +1,7 @@
 const { authJwt } = require("../middlewares");
+const express = require('express');
 const controller = require("../controllers/user.controller");
+const cityController = require('../controllers/city.controller');
 
 module.exports = function(app) {
   app.use(function(req, res, next) {
@@ -25,4 +27,7 @@ module.exports = function(app) {
     [authJwt.verifyToken, authJwt.isAdmin],
     controller.adminBoard
   );
+  
 };
+
+
