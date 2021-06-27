@@ -1,6 +1,7 @@
 const { authJwt } = require("../middlewares");
 const express = require('express');
 const controller = require("../controllers/user.controller");
+const cityController = require('../controllers/city.controller');
 
 module.exports = function(app) {
   app.use(function(req, res, next) {
@@ -34,7 +35,7 @@ module.exports = function(app) {
 
   app.post("/api/test/city",
     //[authJwt.verifyToken, authJwt.isUser],
-    controller.saveCity
+    cityController.postCity
   );
 
   app.get("/api/test/current",
@@ -47,6 +48,10 @@ module.exports = function(app) {
     controller.saveCurrent
   );
 
+  app.get("/api/test/forecast",
+    //[authJwt.verifyToken, authJwt.isUser],
+    controller.forecast
+  );
   
 };
 

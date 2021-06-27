@@ -1,3 +1,7 @@
+//en city uso la API del gobierno https://datosgobar.github.io/georef-ar-api/
+//city es el nombre de la ciudad y sus datos lat y long
+
+
 const current = require('../controllers/current.controller');
 const city = require('../controllers/city.controller');
 
@@ -21,15 +25,16 @@ exports.city=(req, res) => {
   city.getCity(req, res);
 };
 
-exports.saveCity=(req, res) => {
-  city.postCity(req, res);
-};
+
 
 exports.current=(req, res) => {
   current.getCurrent(req, res);
 };
 
 exports.saveCurrent=(req, res) => {
-  current.postCurrent(req, res);
+  current.saveCurrent(req, res);
 };
 
+exports.forecast=(req, res) => {
+  current.getForecast(req, res);
+};

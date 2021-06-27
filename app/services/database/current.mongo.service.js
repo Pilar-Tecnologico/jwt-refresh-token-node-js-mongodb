@@ -3,10 +3,10 @@ const currentSchema = require('../../config/schema/current.schema');
 
 async function saveCurrent(){
     const currentModel = mongoose.model('current', currentSchema);
-    const currentToday = new Current({cityName: 'ciudad'});
-    currentToday.save((err, currentToday) => {
+    const watherCurrent = new Current({data});
+    await watherCurrent.save((err, watherCurrent) => {
         if (err) return console.log(err);
-        console.log('new elemend add', currentToday);
+        console.log('new elemend add', watherCurrent);
         return {status: 'ok'};
     })  
 };

@@ -5,14 +5,14 @@ const Current = mongoose.model(
   new mongoose.Schema({
     name: String,
     main: {
-        temp: String,
-       feels_like: String,
-       temp_min: String,
-       temp_max: String,
-       pressure: String,
-       humidity: String,
-       sea_level: String,
-       grnd_level: String,
+        temp: Number,
+        feels_like: Number,
+        temp_min: Number,
+        temp_max: Number,
+        pressure: Number,
+        humidity: Number,
+        sea_level: Number,
+        grnd_level: Number,
        
     } 
   })

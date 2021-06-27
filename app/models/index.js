@@ -11,4 +11,6 @@ db.refreshToken = require("./refreshToken.model");
 
 db.ROLES = ["user", "admin", "moderator"];
 
+db.city = require("./city.model");
+
 module.exports = db;
