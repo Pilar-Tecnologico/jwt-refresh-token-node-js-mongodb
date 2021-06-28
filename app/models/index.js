@@ -9,6 +9,8 @@ db.user = require("./user.model");
 db.role = require("./role.model");
 db.refreshToken = require("./refreshToken.model");
 
+db.school = require("./school.model");
+
 db.ROLES = ["user", "admin", "moderator"];
 
 module.exports = db;
