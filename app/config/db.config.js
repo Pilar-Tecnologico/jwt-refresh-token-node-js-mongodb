@@ -1,3 +1,4 @@
+require('dotenv').config();
 const dbUser = process.env.DB_USER;
 const dbPass = process.env.DB_PASSWORD;
 const dbName = 'PilarTecno'

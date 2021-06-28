@@ -15,7 +15,11 @@ router.get('/departamento/:provincia', async function(req, res){
 });
 
 router.get('/ubicacion/:coord', async function(req, res){
-    nationController.getDepartment(req, res);
+    nationController.getUbication(req, res);
+});
+
+router.post('/lugar/:coord', async function(req, res){
+    nationController.saveSite(req, res);
 });
 
 module.exports=router;

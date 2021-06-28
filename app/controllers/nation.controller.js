@@ -32,8 +32,7 @@ async function getProvince(req, res){
 
 async function getDepartment(req, res){
     const query={
-        nombre: req.query.provincia,
-        max:100
+        nombre: req.query.nombre
     };
     const axiosParams = querystring.stringify(query);
     axios.get(`https://apis.datos.gob.ar/georef/api/departamentos?${axiosParams}`)
@@ -48,8 +47,7 @@ async function getDepartment(req, res){
 async function getUbication(req, res){
     const query={
         lat: req.query.x,
-        lon: req.query.y,
-        max:100
+        lon: req.query.y
     };
     const axiosParams = querystring.stringify(query);
     axios.get(`https://apis.datos.gob.ar/georef/api/ubicacion?${axiosParams}`)

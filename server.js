@@ -28,6 +28,8 @@ db.mongoose
   })
   .catch(err => {
     console.error("Connection error", err);
+    //console.error("Connection error", dbConfig.dbUri);
+    //console.log(process.env.DB_USER);
     //process.exit();
   });
 
