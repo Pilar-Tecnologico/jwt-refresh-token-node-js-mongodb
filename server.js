@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const dbConfig = require("./app/config/db.config");
+const nationRouter = require("./app/routes/nation.routes");
 
 const app = express();
 
@@ -27,13 +28,14 @@ db.mongoose
   })
   .catch(err => {
     console.error("Connection error", err);
-    process.exit();
+    //process.exit();
   });
 
 // simple route
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to pilarTecno application." });
 });
+app.use('/nacion', nationRouter);
 
 // routes
 require("./app/routes/auth.routes")(app);
