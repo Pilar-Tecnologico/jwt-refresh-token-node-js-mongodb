@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const dbConfig = require("./app/config/db.config");
+const dotenv = require('dotenv').config();
 
 const app = express();
 
@@ -38,6 +39,8 @@ app.get("/", (req, res) => {
 // routes
 require("./app/routes/auth.routes")(app);
 require("./app/routes/user.routes")(app);
+// steam route
+require("./app/routes/rickandmorty.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 3000;
