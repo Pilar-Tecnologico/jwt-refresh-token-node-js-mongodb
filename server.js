@@ -1,12 +1,18 @@
 const express = require("express");
 const cors = require("cors");
-const dbConfig = require("./app/config/db.config");
 const app = express();
+const cookieParser = require('cookie-parser');
+
+
+
+const dbConfig = require("./app/config/db.config");
+
 
 let corsOptions = {
   origin: "*"
 };
 
+app.use(cookieParser());
 
 app.use(cors(corsOptions));
 // parse requests of content-type - application/json
@@ -14,9 +20,24 @@ app.use(express.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
+
 const db = require("./app/models");
 const { request } = require("express");
 const Role = db.role;
+
+
+
+//simple route
+// app.get("/", (req, res) => {
+//   res.json({ message: "BIENVENIDOS A LA TAREA FINAL DEL CURSO." });
+//  });
+
+// routes
+require("./app/routes/auth.routes")(app);
+require("./app/routes/user.routes")(app);
+
+
+
 
 //CONEXION A LA BD DE ATLAS
 db.mongoose
@@ -29,17 +50,6 @@ db.mongoose
     console.error("CONNECTION ERROR", err);
     process.exit();
   });
-
- //simple route
-app.get("/", (req, res) => {
-  res.json({ message: "BIENVENIDOS A LA TAREA FINAL DEL CURSO." });
- });
-
-  
-
-// routes
-require("./app/routes/auth.routes")(app);
-require("./app/routes/user.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 3000;
