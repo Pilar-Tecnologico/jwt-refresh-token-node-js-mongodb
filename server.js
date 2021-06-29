@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 const cors = require("cors");
 const dbConfig = require("./app/config/db.config");
@@ -23,7 +24,7 @@ db.mongoose
   .connect(dbConfig.dbUri, dbConfig.mongooseOptions)
   .then(() => {
     console.log("Successfully connect to MongoDB.");
-    initial();
+    // initial();
   })
   .catch(err => {
     console.error("Connection error", err);
@@ -38,6 +39,18 @@ app.get("/", (req, res) => {
 // routes
 require("./app/routes/auth.routes")(app);
 require("./app/routes/user.routes")(app);
+
+//routes provinces and citys 
+require("./app/routes/provinces.router")(app);
+require("./app/routes/provinces.router")(app);
+
+//school services internet 
+require("./app/routes/services_internet.routes")(app);
+
+
+//school
+require("./app/routes/school.routes")(app);
+
 
 // set port, listen for requests
 const PORT = process.env.PORT || 3000;
