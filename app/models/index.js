@@ -11,4 +11,6 @@ db.refreshToken = require("./refreshToken.model");
 
 db.ROLES = ["user", "admin", "moderator"];
 
+db.club = require('./clubs');
+
 module.exports = db;

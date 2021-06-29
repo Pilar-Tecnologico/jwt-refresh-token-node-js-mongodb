@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
-const dbConfig = require("./app/config/db.config");
 const dotenv = require("dotenv").config();
+const dbConfig = require("./app/config/db.config");
 const fifaRoute = require('./app/routes/fifa.routes');
 
 
@@ -40,7 +40,8 @@ app.get("/", (req, res) => {
 });
 
 // routes
-app.use('/fifa', fifaRoute);
+//app.use('/fifa', fifaRoute);
+require("./app/routes/fifa.routes")(app);
 require("./app/routes/auth.routes")(app);
 require("./app/routes/user.routes")(app);
 
