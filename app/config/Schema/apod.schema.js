@@ -7,7 +7,8 @@ const apodSchema = new Schema({
     // hdurl: String,
     // media_type: String,
     // service_version: String,
-    title: String,
+    provincia: String,
+    localidad: String,
     // url: String,
     // creation_date: { type: Date, default: Date.now },
     // last_modified_date: { type: Date, default: Date.now }

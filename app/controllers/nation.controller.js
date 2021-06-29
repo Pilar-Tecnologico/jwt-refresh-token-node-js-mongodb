@@ -1,5 +1,6 @@
 const axios = require('axios').default;
 const querystring = require('querystring');
+const apodMongoService = require('../services/database/apod.mongo.service');
 
 async function getProvinces(){
     axios.get(`https://apis.datos.gob.ar/georef/api/provincias`)
@@ -59,4 +60,10 @@ async function getUbication(req, res){
         });
 }
 
-module.exports={getProvinces, getProvince, getIndex, getDepartment, getUbication}
+async function saveSite(req, res){
+    //const response = await apodMongoService.saveApod();
+    //res.json(response);
+    console.log(req.body);
+}
+
+module.exports={getProvinces, getProvince, getIndex, getDepartment, getUbication, saveSite}
