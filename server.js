@@ -23,7 +23,7 @@ const Role = db.role;
 db.mongoose
   .connect(dbConfig.dbUri, dbConfig.mongooseOptions)
   .then(() => {
-    console.log("Successfully connect to MongoDB.");
+    console.log("Successfully connect to Atlas MongoDB.");
     initial();
   })
   .catch(err => {
