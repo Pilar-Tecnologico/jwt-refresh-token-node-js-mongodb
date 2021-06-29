@@ -2,7 +2,6 @@ const axios = require('axios').default;
 const querystring = require('querystring');
 const {hashs, params} = require('../config/apikeyHash.config');
 
-
 // Characters List
 async function getMarvelCharacters(req, res){
 
@@ -47,11 +46,10 @@ async function getMarvelComics(req, res){
         });
 
 };
+
 // Series List
 async function getMarvelSeries(req, res){
 
-    const seriesId =  req.params.id;
-    
     axios.get(`http://gateway.marvel.com/v1/public/series?ts=1&${params}&${hashs}`)
 
          .then((response)=>{

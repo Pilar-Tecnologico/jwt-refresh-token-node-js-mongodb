@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+//schema - save your favorite character with img
 const Char = mongoose.model(
     "Char",
     new mongoose.Schema({

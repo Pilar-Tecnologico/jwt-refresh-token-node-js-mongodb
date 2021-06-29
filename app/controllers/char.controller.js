@@ -1,5 +1,4 @@
 const axios = require('axios');
-/* const Char = require('../models/char.model'); */
 const {hashs, params} = require('../config/apikeyHash.config');
 const db = require("../models");
 const { char: Char } = db;
