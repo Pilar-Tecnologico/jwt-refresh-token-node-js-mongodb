@@ -1,5 +1,7 @@
+const SECRET = process.env.SECRET;
+
 module.exports = {
-  secret: "bezkoder-secret-key",
+  secret: SECRET,
   jwtExpiration: 3600,         // 1 hour
   jwtRefreshExpiration: 86400, // 24 hours
 

@@ -9,6 +9,12 @@ module.exports = function(app) {
     );
     next();
   });
+  app.get("'/fut/'");
+
+
+
+
+
 
   app.get("/api/test/all", controller.allAccess);
 
