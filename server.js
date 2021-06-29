@@ -1,7 +1,8 @@
 const express = require("express");
 const cors = require("cors");
+const dotenv = require("dotenv").config();
 const dbConfig = require("./app/config/db.config");
-
+/* const marvelRouter = require('./routes/marvel.routes'); */
 const app = express();
 
 let corsOptions = {
@@ -15,6 +16,7 @@ app.use(express.json());
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
+
 
 const db = require("./app/models");
 const Role = db.role;
@@ -38,6 +40,9 @@ app.get("/", (req, res) => {
 // routes
 require("./app/routes/auth.routes")(app);
 require("./app/routes/user.routes")(app);
+require("./app/routes/marvel.routes")(app);
+require("./app/routes/chars.routes")(app);
+
 
 // set port, listen for requests
 const PORT = process.env.PORT || 3000;
