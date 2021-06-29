@@ -78,22 +78,4 @@ async function getfifa(req, res){
     module.exports = {getfifa,postClubById,getplayer};
 
     
-    /* async function getfifa(req, res){
     
-        axios.get(`https://www.easports.com/fifa/ultimate-team/api/fut/item`)
-        .then((response) => {
-            const data= response.data.items
-    
-            
-            res.json(data);
-        })
-            .catch(err => {
-                res.status(400).json({
-                    
-                    "code": "bad_request",
-                    "message": "Bad request. Please check your parameters values"
-                })
-            })
-    };
-     */
-    /* data=data.filter(({club})=> club.name === 'Juventus' ) */
