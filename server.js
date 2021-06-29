@@ -3,10 +3,12 @@ const cors = require("cors");
 const dotenv = require('dotenv').config();
 const dbConfig = require("./app/config/db.config");
 
+const nasaRouter = require('./app/routes/nasa.routes');
+
 const app = express();
 
 let corsOptions = {
-  origin: "http://localhost:8081"
+  origin: "*"
 };
 
 app.use(cors(corsOptions));
@@ -32,9 +34,7 @@ db.mongoose
   });
 
 // simple route
-app.get("/", (req, res) => {
-  res.json({ message: "Welcome to pilarTecno application." });
-});
+app.use('/nasa', nasaRouter);
 
 // routes
 require("./app/routes/auth.routes")(app);
