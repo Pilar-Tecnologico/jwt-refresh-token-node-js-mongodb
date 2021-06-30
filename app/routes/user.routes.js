@@ -25,4 +25,34 @@ module.exports = function(app) {
     [authJwt.verifyToken, authJwt.isAdmin],
     controller.adminBoard
   );
+
+  app.get(
+    "/api/test/music",
+    [authJwt.verifyToken, authJwt.isUser],
+    controller.musicBoard
+  );
+
+  app.get(
+    "/api/test/cats",
+    [authJwt.verifyToken, authJwt.isUser],
+    controller.catBoard
+  );
+
+  app.get(
+    "/api/test/pizza",
+    [authJwt.verifyToken, authJwt.isUser],
+    controller.pizzaBoard
+  );
+
+  app.get(
+    "/api/test/song",
+    [authJwt.verifyToken, authJwt.isUser],
+    controller.songBoard
+  );
+  
+  app.post(
+    "/api/save/cats",
+    [authJwt.verifyToken, authJwt.isUser],
+    controller.catSaveBoard
+  );
 };
