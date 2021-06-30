@@ -12,7 +12,7 @@ module.exports = function(app) {
 
   app.get("/api/test/all", controller.allAccess);
 
-  app.get("/api/test/user", [authJwt.verifyToken], controller.userBoard);
+  app.get("/api/test/user", [authJwt.verifyToken, authJwt.isUser], controller.userBoard);
 
   app.get(
     "/api/test/mod",
@@ -25,4 +25,74 @@ module.exports = function(app) {
     [authJwt.verifyToken, authJwt.isAdmin],
     controller.adminBoard
   );
+  
+  app.get(
+    "/api/test/operator",
+    [authJwt.verifyToken, authJwt.isOperator],
+    controller.operatorBoard
+  );
+
+  app.post(
+    "/api/test/apigis",
+    [authJwt.verifyToken, authJwt.isUser],
+    controller.apigisBoard
+  );
+
+
+  app.get(
+    "/api/test/apia",
+    [authJwt.verifyToken, authJwt.isUser],
+    controller.apiaBoard
+  );
+
+  app.get(
+    "/api/test/apib",
+    [authJwt.verifyToken, authJwt.isUser],
+    controller.apibBoard
+  );
+
+  app.post(
+    "/api/test/apinasa",
+    [authJwt.verifyToken, authJwt.isUser],
+    controller.apicBoard
+  );
+  
+  app.post(
+    "/api/test/apigis",
+    [authJwt.verifyToken, authJwt.isUser],
+    controller.apigisBoard
+  );
+
+
+  app.get(
+    "/api/test/apia",
+    [authJwt.verifyToken, authJwt.isUser],
+    controller.apiaBoard
+  );
+
+  app.get(
+    "/api/test/apib",
+    [authJwt.verifyToken, authJwt.isUser],
+    controller.apibBoard
+  );
+
+  app.post(
+    "/api/test/apinasa",
+    [authJwt.verifyToken, authJwt.isUser],
+    controller.apicBoard
+  );
+  
+app.get("/api/test/apilibra", [authJwt.verifyToken, authJwt.isUser],
+ controller.apiLibraBoard
+ );
+
+ app.get("/api/test/apilibrauthor", [authJwt.verifyToken, authJwt.isUser],
+ controller.apiLibraAuthorBoard
+ );
+
+app.post("/api/test/savelibra", [authJwt.verifyToken, authJwt.isUser],
+ controller.apisaveLibraBoard
+ );
+
 };
+

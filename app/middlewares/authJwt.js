@@ -60,6 +60,38 @@ const isAdmin = (req, res, next) => {
     );
   });
 };
+// code new roles
+const isUser = (req, res, next) => {
+  User.findById(req.userId).exec((err, user) => {
+    if (err) {
+      res.status(500).send({ message: err });
+      return;
+    }
+
+    Role.find(
+      {
+        _id: { $in: user.roles }
+      },
+      (err, roles) => {
+        if (err) {
+          res.status(500).send({ message: err });
+          return;
+        }
+
+        for (let i = 0; i < roles.length; i++) {
+          if (roles[i].name === "user") {
+            next();
+            return;
+          }
+        }
+
+        res.status(403).send({ message: "Require User Role!" });
+        return;
+      }
+    );
+  });
+};
+
 
 const isModerator = (req, res, next) => {
   User.findById(req.userId).exec((err, user) => {
@@ -92,9 +124,42 @@ const isModerator = (req, res, next) => {
   });
 };
 
+const isOperator = (req, res, next) => {
+  User.findById(req.userId).exec((err, user) => {
+    if (err) {
+      res.status(500).send({ message: err });
+      return;
+    }
+
+    Role.find(
+      {
+        _id: { $in: user.roles }
+      },
+      (err, roles) => {
+        if (err) {
+          res.status(500).send({ message: err });
+          return;
+        }
+
+        for (let i = 0; i < roles.length; i++) {
+          if (roles[i].name === "operator") {
+            next();
+            return;
+          }
+        }
+
+        res.status(403).send({ message: "Require Operator Role!" });
+        return;
+      }
+    );
+  });
+};
+
 const authJwt = {
   verifyToken,
   isAdmin,
-  isModerator
+  isModerator,
+  isOperator,
+  isUser
 };
 module.exports = authJwt;
