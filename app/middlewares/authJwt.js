@@ -8,11 +8,13 @@ const { TokenExpiredError } = jwt;
 
 const catchError = (err, res) => {
   if (err instanceof TokenExpiredError) {
-    return res.status(401).send({ message: "Unauthorized! Access Token was expired!" });
+    return res
+      .status(401)
+      .send({ message: "Unauthorized! Access Token was expired!" });
   }
 
   return res.sendStatus(401).send({ message: "Unauthorized!" });
-}
+};
 
 const verifyToken = (req, res, next) => {
   let token = req.headers["x-access-token"];
@@ -39,7 +41,7 @@ const isAdmin = (req, res, next) => {
 
     Role.find(
       {
-        _id: { $in: user.roles }
+        _id: { $in: user.roles },
       },
       (err, roles) => {
         if (err) {
@@ -70,7 +72,7 @@ const isModerator = (req, res, next) => {
 
     Role.find(
       {
-        _id: { $in: user.roles }
+        _id: { $in: user.roles },
       },
       (err, roles) => {
         if (err) {
@@ -92,9 +94,41 @@ const isModerator = (req, res, next) => {
   });
 };
 
+const isUser = (req, res, next) => {
+  User.findById(req.userId).exec((err, user) => {
+    if (err) {
+      res.status(500).send({ message: err });
+      return;
+    }
+
+    Role.find(
+      {
+        _id: { $in: user.roles },
+      },
+      (err, roles) => {
+        if (err) {
+          res.status(500).send({ message: err });
+          return;
+        }
+
+        for (let i = 0; i < roles.length; i++) {
+          if (roles[i].name === "user") {
+            next();
+            return;
+          }
+        }
+
+        res.status(403).send({ message: "Require User Role!" });
+        return;
+      }
+    );
+  });
+};
+
 const authJwt = {
   verifyToken,
   isAdmin,
-  isModerator
+  isModerator,
+  isUser,
 };
 module.exports = authJwt;

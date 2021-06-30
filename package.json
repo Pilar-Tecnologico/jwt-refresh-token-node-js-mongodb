@@ -1,7 +1,7 @@
 {
   "name": "node-js-jwt-refresh-token-mongodb",
   "version": "1.0.0",
-  "description": "Node.js JWT Refresh Token with MongoDB",
+  "description": "Final task of Course 4 - PilarTecno",
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js",
@@ -16,12 +16,14 @@
     "authorization",
     "mongodb"
   ],
-  "author": "bezkoder",
+  "author": "Esteban Luna Mercado",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.12.10",
