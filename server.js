@@ -77,6 +77,16 @@ function initial() {
 
         console.log("added 'admin' to roles collection");
       });
+      
+      new Role({
+        name: "operator"
+      }).save(err => {
+        if (err) {
+          console.log("error", err);
+        }
+
+        console.log("added 'operator' to roles collection");
+      });
     }
   });
 }
