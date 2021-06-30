@@ -19,7 +19,7 @@ router.get('/ubicacion/:coord', async function(req, res){
 });
 
 router.post('/lugar', async function(req, res){
-    nationController.saveSite(req, res);
+    nationController.saveUbication(req, res);
 });
 
 module.exports=router;

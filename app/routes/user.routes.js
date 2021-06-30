@@ -25,4 +25,29 @@ module.exports = function(app) {
     [authJwt.verifyToken, authJwt.isAdmin],
     controller.adminBoard
   );
+
+
+  app.get(
+    "/api/test/provincias",
+    [authJwt.verifyToken, authJwt.isUser],
+    controller.provBoard
+  );
+
+  app.get(
+    "/api/test/departamentos",
+    [authJwt.verifyToken, authJwt.isUser],
+    controller.depBoard
+  );
+
+  app.get(
+    "/api/test/ubicacion",
+    [authJwt.verifyToken, authJwt.isUser],
+    controller.ubBoard
+  );
+
+  app.post(
+    "/api/test/saveUbicacion",
+    [authJwt.verifyToken, authJwt.isUser],
+    controller.saveBoard
+  );
 };
