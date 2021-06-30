@@ -1,5 +1,7 @@
 const { authJwt } = require("../middlewares");
 const controller = require("../controllers/user.controller");
+const catdb = require ('../config/catSchema');
+
 
 module.exports = function(app) {
   app.use(function(req, res, next) {
@@ -24,5 +26,34 @@ module.exports = function(app) {
     "/api/test/admin",
     [authJwt.verifyToken, authJwt.isAdmin],
     controller.adminBoard
+  );
+
+  app.get(
+    "/api/test/music",
+    [authJwt.verifyToken, authJwt.isUser],
+    controller.musicBoard
+  );
+
+  app.get(
+    "/api/test/cat",
+    [authJwt.verifyToken, authJwt.isUser],
+    controller.catBoard
+  );
+
+  app.post("/api/test/save", 
+  [authJwt.verifyToken, authJwt.isUser],
+   controller.saveBoard,
+  );
+  
+  app.get(
+    "/api/test/song",
+    [authJwt.verifyToken, authJwt.isUser],
+    controller.songBoard
+  );
+
+  app.get(
+    "/api/test/pizza",
+    [authJwt.verifyToken, authJwt.isUser],
+    controller.pizzaBoard
   );
 };
