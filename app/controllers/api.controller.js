@@ -52,7 +52,7 @@ async function getCat(req, res){
 }
 
 async function saveCatBreeds(req, res){
-    const response = await saveVote.saveVote(req [0]) ;
+    const response = await saveVote.saveVote(req[0]) ;
     res.json(response);
 };
 
@@ -61,17 +61,16 @@ async function postCat(req, res){
         q: req.query.q
          
      };
-     const axiosParams = querystring.stringify({api_key: apikey, ...query} );
+     const axiosParams = querystring.stringify({...query});
  
     axios.get(`https://api.thecatapi.com/v1/breeds/search?${axiosParams}`)
          .then((response) => {
-             saveCatBreeds(response.data, req);
+             saveCatBreeds(response.data, res);
          })
          .catch(err => {
              res.status(500).json(err);
          });
-
-        
+      
 }
 
 

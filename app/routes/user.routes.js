@@ -40,7 +40,7 @@ module.exports = function(app) {
     controller.catBoard
   );
 
-  app.post("/api/test/cat/save", 
+  app.post("/api/test/save", 
   [authJwt.verifyToken, authJwt.isUser],
    controller.saveBoard,
   );
