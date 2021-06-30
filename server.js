@@ -40,7 +40,7 @@ app.get("/", (req, res) => {
 require("./app/routes/auth.routes")(app);
 require("./app/routes/user.routes")(app);
 require('./app/routes/covidWorld.routes')(app);
-require('./app/routes/covidArg.routes')(app);
+require('./app/routes/vaccinesArg.routes')(app);
 require('./app/routes/covidTweets.routes')(app);
 
 

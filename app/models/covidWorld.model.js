@@ -3,15 +3,29 @@ const Schema = require('mongoose').Schema;
 const mongoose = require('mongoose');
 
 const covidWorldSchema = new Schema({
-    NewConfirmed: Number,
-    TotalConfirmed: Number,
-    NewDeaths: Number,
-    TotalDeaths: Number,
-    NewRecovered: Number,
-    TotalRecovered: Number,
-    Date: String,
-    creation_date: { type: Date, default: Date.now },
-    // last_modified_date: { type: Date, default: Date.now, expires: 60}
+    updated: Number,
+    cases: Number,
+    todayCases: Number,
+    deaths: Number,
+    todayDeaths: Number,
+    recovered: Number,
+    todayRecovered: Number,
+    active: Number,
+    critical: Number,
+    casesPerOneMillion: Number,
+    deathsPerOneMillion: Number,
+    tests: Number,
+    testsPerOneMillion: Number,
+    population: Number,
+    oneCasePerPeople: Number,
+    oneDeathPerPeople: Number,
+    oneTestPerPeople: Number,
+    undefined: Number,
+    activePerOneMillion: Number,
+    recoveredPerOneMillion: Number,
+    criticalPerOneMillion: Number,
+    affectedCountries: Number,
+    creation_date: { type: Date, default: Date.now }
 });
 
-module.exports = mongoose.model('covidWorld', covidWorldSchema);
+module.exports = mongoose.model('covidWorldSumary', covidWorldSchema);

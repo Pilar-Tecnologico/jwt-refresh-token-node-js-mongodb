@@ -1,4 +1,4 @@
-const covidTweetsController = require('../controllers/covidTweets.controller')
+const vaccinesArgController = require('../controllers/vaccinesArg.controller')
 const { authJwt } = require("../middlewares")
 
 module.exports = function(app) {
@@ -9,6 +9,5 @@ module.exports = function(app) {
     );
     next();
   });
-  
-  app.get("/covid/tweets", [authJwt.verifyToken, authJwt.isUser], covidTweetsController.getTweets); 
+  app.get("/vaccines/argentina", [authJwt.verifyToken, authJwt.isUser], vaccinesArgController.getVaccinesSumary); 
 };

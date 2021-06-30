@@ -3,18 +3,16 @@ const covidWorldMongoService = require('../services/database/covidWorld.mongo.se
 
 async function getSumary(req, res){
     try {
-        const {data: {Global}} = await axios.get(`https://api.covid19api.com/summary`)
-
-        covidWorldMongoService.saveCovidWorldCache(Global)
-
-        res.status(200).json(Global)
+        const {data} = await axios.get(`https://corona.lmao.ninja/v2/all`)
+        await covidWorldMongoService.saveCovidWorldCache(data)
+        res.status(200).json(data)
     }
     catch {
         const badResponse = {
-            "code": "bad_request",
-            "message": "Bad request. Please check your parameters values"
+            "code": "internal_server_error",
+            "message": "Something went wrong"
         }
-        res.status(400).json(badResponse)
+        res.status(500).json(badResponse)
     }
 };
 

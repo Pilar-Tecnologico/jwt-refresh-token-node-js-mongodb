@@ -1,9 +1,11 @@
 const axios = require('axios').default;
+const querystring = require('querystring');
 
 async function getSumary(req, res){
+    const {country} = req.params
     try {
-        const {data} = await axios.get(`https://covidstats.com.ar/ws/evolucion?comprimido=1&origen=`)
-
+        const params = querystring.stringify({yesterday:"true", strict:"true"})
+        const {data} = await axios.get(`https://corona.lmao.ninja/v2/countries/${country}?${params}&query`)
         res.status(200).json(data)
     }
     catch {
