@@ -52,21 +52,18 @@ async function getCat(req, res){
 }
 
 async function saveCatBreeds(req, res){
-    const response = await saveVote.saveVote(req) ;
+    const response = await saveVote.saveVote(req [0]) ;
     res.json(response);
 };
 
-//AQUI EN EL POST NO PUDE ENCONTRAR EL ERROR, ME CREO UNA COLECCION
-//DENTRO DE MI BASE DE DATOS PERO ME LOS CARGABA VACIO, SOLO GENERANDO
-//EL ID 
 async function postCat(req, res){
     const query = { 
-        
-         name: req.query.name    
+        q: req.query.q
+         
      };
      const axiosParams = querystring.stringify({api_key: apikey, ...query} );
  
-    axios.get(`https://api.thecatapi.com/v1/favourites?${axiosParams}`)
+    axios.get(`https://api.thecatapi.com/v1/breeds/search?${axiosParams}`)
          .then((response) => {
              saveCatBreeds(response.data, req);
          })
@@ -82,7 +79,7 @@ async function postCat(req, res){
 async function getSong(req, res){
     const query = {  
         pattern: req.query.pattern,
-        max:100
+       
     };
     const axiosParams = querystring.stringify({...query} );
     axios.get(`http://www.songsterr.com/a/ra/songs.xml?${axiosParams}`)
@@ -96,8 +93,8 @@ async function getSong(req, res){
 
 async function getPizza(req, res){
     const query = {  
-        orders: req.query.orders,
-        max:100
+        orders: req.query.orders
+      
     };
     const axiosParams = querystring.stringify({...query} );
     axios.get(`https://order-pizza-api.herokuapp.com/api/swagger.json?${axiosParams}`)
