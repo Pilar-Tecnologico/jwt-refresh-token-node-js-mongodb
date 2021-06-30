@@ -1,4 +1,5 @@
 const express = require("express");
+require("dotenv").config();
 const cors = require("cors");
 const dbConfig = require("./app/config/db.config");
 
@@ -38,7 +39,7 @@ app.get("/", (req, res) => {
 // routes
 require("./app/routes/auth.routes")(app);
 require("./app/routes/user.routes")(app);
-
+require("./app/routes/place.routes")(app);
 // set port, listen for requests
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
