@@ -43,14 +43,14 @@ async function savePictureOfTheDay(req, res){
     //console.log(axiosParams);
     axios.get(`https://api.nasa.gov/planetary/apod?${axiosParams}`)
         .then((response) => {
-            saveApodInDb(response.data, res);
+            saveApodService(response.data, res);
         })
         .catch(err => {
             res.status(500).json(err);
         });
 }
 
-async function saveApodInDb(req, res){
+async function saveApodService(req, res){
     const response = await apodMongoService.saveApod(req);
     res.json(response);
 }
