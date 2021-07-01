@@ -1,12 +1,17 @@
 const express = require("express");
 const cors = require("cors");
 const dbConfig = require("./app/config/db.config");
+const nasaRouter = require('./app/routes/nasa.routes');
+const pokeRouter = require('./app/routes/pokemon.routes');
 
 const app = express();
 
 let corsOptions = {
   origin: "http://localhost:8081"
 };
+
+app.use('/nasa', nasaRouter)
+app.use('/pokemon', pokeRouter)
 
 app.use(cors(corsOptions));
 
@@ -80,3 +85,5 @@ function initial() {
     }
   });
 }
+
+
