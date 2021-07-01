@@ -10,10 +10,13 @@ const getTeams = async (req, res) => {
             .then(response => response)
             .catch(err => err);
 
-        if(teams != null){
+        if (teams != null) {
             const { result } = teams;
+            // 
+            await utils.registerPlayers(result[0]);
+
             res.status(200).json(result);
-        }else{
+        } else {
             res.status(400).json({ message: "The Team ID does not exist" });
         }
     } else {
@@ -29,10 +32,10 @@ const getCountries = async (req, res) => {
         .then(response => response)
         .catch(err => err);
 
-    if(countries != null){
+    if (countries != null) {
         const { result } = countries;
         res.status(200).json(result)
-    }else{
+    } else {
         res.status(400).json({ message: "no results about countries" });
     }
 }
@@ -43,14 +46,13 @@ const getLeagues = async (req, res) => {
         .then(response => response)
         .catch(err => err);
 
-    if(leagues != null){
+    if (leagues != null) {
         const { result } = leagues;
         res.status(200).json(result)
-    }else{
+    } else {
         res.status(400).json({ message: "no results about countries" })
     }
 }
-
 
 
 module.exports = {
