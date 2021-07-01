@@ -21,6 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 
 const db = require("./app/models");
 const Role = db.role;
+const User = db.user;
 
 db.mongoose
   .connect(dbConfig.dbUri, dbConfig.mongooseOptions)

@@ -4,7 +4,7 @@ const apiKey = process.env.API_KEY;
 const apodMongoService = require('../services/database/apod.mongo.service');
 
 async function getIndex(req, res){
-    res.json({message: "Welcome to PilarTecno application."});
+    res.json({message: "Welcome to PilarTecno application"});
 }
 
 async function getPictureOfTheDay(req, res){
@@ -36,7 +36,23 @@ async function getMarsPicture(req, res){
 }
 
 async function savePictureOfTheDay(req, res){
-    res.json(apodMongoService.saveApod());
+    const query = {
+        date: req.query.date
+    };
+    const axiosParams = querystring.stringify({api_key: apiKey, ...query});
+    //console.log(axiosParams);
+    axios.get(`https://api.nasa.gov/planetary/apod?${axiosParams}`)
+        .then((response) => {
+            saveApodInDb(response.data, res);
+        })
+        .catch(err => {
+            res.status(500).json(err);
+        });
+}
+
+async function saveApodInDb(req, res){
+    const response = await apodMongoService.saveApod(req);
+    res.json(response);
 }
 
 module.exports = {getIndex, getPictureOfTheDay, getMarsPicture, savePictureOfTheDay};
