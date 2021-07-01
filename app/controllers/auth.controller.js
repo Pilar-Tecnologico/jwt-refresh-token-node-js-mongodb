@@ -9,9 +9,9 @@ exports.signup = (req, res) => {
   const user = new User({
     username: req.body.username,
     email: req.body.email,
-    password: bcrypt.hashSync(req.body.password, 8),
+    password: bcrypt.hashSync(req.body.password, 8)
   });
-
+  console.log(user.password);
   user.save((err, user) => {
     if (err) {
       res.status(500).send({ message: err });
@@ -63,7 +63,7 @@ exports.signup = (req, res) => {
 
 exports.signin = (req, res) => {
   User.findOne({
-    username: req.body.username,
+    username: req.body.username
   })
     .populate("roles", "-__v")
     .exec(async (err, user) => {
