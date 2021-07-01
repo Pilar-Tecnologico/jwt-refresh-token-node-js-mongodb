@@ -1,11 +1,14 @@
 const express = require("express");
 const cors = require("cors");
+const dotenv = require('dotenv').config();
 const dbConfig = require("./app/config/db.config");
+
+const nasaRouter = require('./app/routes/nasa.routes');
 
 const app = express();
 
 let corsOptions = {
-  origin: "http://localhost:8081"
+  origin: "*"
 };
 
 app.use(cors(corsOptions));
@@ -18,11 +21,12 @@ app.use(express.urlencoded({ extended: true }));
 
 const db = require("./app/models");
 const Role = db.role;
+const User = db.user;
 
 db.mongoose
   .connect(dbConfig.dbUri, dbConfig.mongooseOptions)
   .then(() => {
-    console.log("Successfully connect to MongoDB.");
+    console.log("Successfully connect to Atlas MongoDB.");
     initial();
   })
   .catch(err => {
@@ -31,9 +35,7 @@ db.mongoose
   });
 
 // simple route
-app.get("/", (req, res) => {
-  res.json({ message: "Welcome to pilarTecno application." });
-});
+app.use('/nasa', nasaRouter);
 
 // routes
 require("./app/routes/auth.routes")(app);
