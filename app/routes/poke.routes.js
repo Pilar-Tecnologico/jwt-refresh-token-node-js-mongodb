@@ -1,5 +1,5 @@
 const { authJwt } = require("../middlewares");
-const controller = require("../controllers/user.controller");
+const controller = require("../controllers/poke.controller");
 
 module.exports = function(app) {
   app.use(function(req, res, next) {
@@ -10,23 +10,20 @@ module.exports = function(app) {
     next();
   });
 
-  app.get("/api/test/all", controller.allAccess);
-
   app.get(
-    "/api/test/user", 
+    "/api/poke/get/:pokemon", 
     [authJwt.verifyToken], 
-    controller.userBoard);
+    controller.getPokemon);
 
   app.get(
-    "/api/test/mod",
-    [authJwt.verifyToken, authJwt.isModerator],
-    controller.moderatorBoard
-  );
+    "/api/poke/list/", 
+    [authJwt.verifyToken], 
+    controller.listPokemon);
+  
 
+  //Get last 5 result of /api/poke/get/
   app.get(
-    "/api/test/admin",
+    "/api/poke/last/", 
     [authJwt.verifyToken, authJwt.isAdmin],
-    controller.adminBoard
-  );
-
-};
+    controller.lastUses);
+}
